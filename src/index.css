@@ -11,37 +11,16 @@
     font-family: "Poppins", serif;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: rgba(99, 102, 241, 0.3) rgba(12, 5, 53, 0.356);
+    scrollbar-color: rgba(160, 160, 160, 0.3) rgba(50, 50, 50, 0.356);
 }
 
 html,
 body {
     overflow-x: hidden;
-    background: #030014;
     scroll-behavior: smooth !important;
 }
 
-@keyframes blob {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
 
-.animate-blob {
-    animation: blob 8s infinite;
-}
-
-.animation-delay-2000 {
-    animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-    animation-delay: 4s;
-}
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -50,56 +29,40 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(3, 0, 20, 0.4);
+    background: rgba(20, 20, 20, 0.4);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(100, 100, 100, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(99, 102, 241, 0.3);
+    background: rgba(100, 100, 100, 0.3);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(200, 200, 200, 0.1);
     box-shadow: 
-      inset 0 0 20px rgba(168, 85, 247, 0.2),
-      0 0 10px rgba(99, 102, 241, 0.2);
+      inset 0 0 20px rgba(100, 100, 100, 0.2),
+      0 0 10px rgba(100, 100, 100, 0.2);
     transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(99, 102, 241, 0.5);
-    border: 1px solid rgba(168, 85, 247, 0.3);
+    background: rgba(100, 100, 100, 0.5);
+    border: 1px solid rgba(150, 150, 150, 0.3);
     box-shadow: 
-      inset 0 0 30px rgba(168, 85, 247, 0.3),
-      0 0 15px rgba(99, 102, 241, 0.3);
+      inset 0 0 30px rgba(100, 100, 100, 0.3),
+      0 0 15px rgba(100, 100, 100, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: rgba(99, 102, 241, 0.6);
-    border: 1px solid rgba(168, 85, 247, 0.4);
+    background: rgba(100, 100, 100, 0.6);
+    border: 1px solid rgba(180, 180, 180, 0.4);
     box-shadow: 
-      inset 0 0 40px rgba(168, 85, 247, 0.4),
-      0 0 20px rgba(99, 102, 241, 0.4);
+      inset 0 0 40px rgba(100, 100, 100, 0.4),
+      0 0 20px rgba(100, 100, 100, 0.4);
 }
 
 ::-webkit-scrollbar-corner {
     background: transparent;
-}
-
-[data-aos] {
-    will-change: transform, opacity !important;
-}
-
-@keyframes shine {
-    from {
-        left: -100%;
-    }
-    to {
-        left: 200%;
-    }
-}
-.animate-shine {
-    animation: shine 1.5s ease-in-out infinite;
 }

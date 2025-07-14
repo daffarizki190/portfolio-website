@@ -1,207 +1,143 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { Code2, Github, User } from "lucide-react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 import PropTypes from "prop-types";
 
-// Komponen TypewriterEffect
-// Tetap dipertahankan untuk fleksibilitas jika ingin digunakan di masa depan.
-const TypewriterEffect = ({ text }) => {
-  const [displayText, setDisplayText] = useState("");
 
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= text.length) {
-        setDisplayText(text.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 260);
 
-    return () => clearInterval(timer);
-  }, [text]);
 
-  return (
-    <span className="inline-block">
-      {displayText}
-      <span className="animate-pulse">|</span>
-    </span>
-  );
-};
-
-// Validasi PropTypes untuk TypewriterEffect
-TypewriterEffect.propTypes = {
-  text: PropTypes.string.isRequired,
-};
 
 const BackgroundEffect = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-3xl animate-pulse" />
-    <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600/10 via-transparent to-purple-600/10 blur-2xl animate-float" />
-  </div>
+  <motion.div
+    className="absolute inset-0 overflow-hidden bg-gray-900"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1.5 }}
+  >
+    <motion.div
+      className="absolute -inset-20 bg-gradient-to-r from-blue-900 to-purple-900 opacity-50 blur-3xl"
+      animate={{
+        rotate: [0, 360],
+        scale: [1, 1.5, 1],
+      }}
+      transition={{
+        duration: 40,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatType: "mirror",
+      }}
+    />
+    <motion.div
+      className="absolute -inset-20 bg-gradient-to-tr from-cyan-800 via-transparent to-pink-800 opacity-40 blur-3xl"
+      animate={{
+        rotate: [0, -360],
+        scale: [1, 0.8, 1],
+      }}
+      transition={{
+        duration: 60,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatType: "mirror",
+        delay: 2,
+      }}
+    />
+    <div className="absolute inset-0 bg-black/20" />
+  </motion.div>
 );
 
 const IconButton = ({ Icon }) => (
-  <div className="relative group hover:scale-110 transition-transform duration-300">
-    <div className="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-300" />
-    <div className="relative p-2 sm:p-3 bg-black/50 backdrop-blur-sm rounded-full border border-white/10">
-      <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
+  <motion.div 
+    className="relative group"
+    whileHover={{ scale: 1.15, rotate: 5 }}
+    whileTap={{ scale: 0.95 }}
+    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+  >
+    <div className="absolute -inset-2.5 bg-gradient-to-r from-blue-600 to-purple-700 rounded-full blur-md opacity-50 group-hover:opacity-80 transition duration-300" />
+    <div className="relative p-3 sm:p-4 bg-gray-800/60 backdrop-blur-md rounded-full border border-white/20 shadow-2xl">
+      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 text-white/80 group-hover:text-white transition-colors" />
     </div>
-  </div>
+  </motion.div>
 );
 
-// Validasi PropTypes untuk IconButton
 IconButton.propTypes = {
   Icon: PropTypes.elementType.isRequired,
 };
 
-const WelcomeScreen = ({ onLoadingComplete }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: false,
-      mirror: false,
-    });
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      // Tunggu animasi keluar selesai sebelum memanggil onLoadingComplete
-      setTimeout(() => {
-        onLoadingComplete?.();
-      }, 1000);
-    }, 4000);
-
-    return () => clearTimeout(timer);
-  }, [onLoadingComplete]);
-
+const WelcomeScreen = () => {
   const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
     exit: {
       opacity: 0,
-      scale: 1.1,
-      filter: "blur(10px)",
+      y: -50,
       transition: {
         duration: 0.8,
         ease: "easeInOut",
-        when: "beforeChildren",
-        staggerChildren: 0.1,
       },
     },
   };
 
   const childVariants = {
-    exit: {
-      y: -20,
-      opacity: 0,
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
       transition: {
-        duration: 0.4,
-        ease: "easeInOut",
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
 
   return (
-    <AnimatePresence>
-      {isLoading && (
+    <motion.div
+      className="fixed inset-0 bg-black z-50 flex items-center justify-center"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <BackgroundEffect />
+
+      <motion.div
+        className="relative text-center px-4 py-8 w-full max-w-4xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <motion.div
-          className="fixed inset-0 bg-[#030014] z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit="exit"
-          variants={containerVariants}
+          className="flex justify-center gap-4 sm:gap-6 md:gap-10 mb-8 sm:mb-10 md:mb-14"
+          variants={childVariants}
         >
-          <BackgroundEffect />
-
-          <div className="relative min-h-screen flex items-center justify-center px-4">
-            <div className="w-full max-w-4xl mx-auto">
-              {/* Ikon */}
-              <motion.div
-                className="flex justify-center gap-3 sm:gap-4 md:gap-8 mb-6 sm:mb-8 md:mb-12"
-                variants={childVariants}
-              >
-                {[Code2, User, Github].map((Icon, index) => (
-                  <div
-                    key={index}
-                    data-aos="fade-down"
-                    data-aos-delay={index * 200}
-                  >
-                    <IconButton Icon={Icon} />
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* Teks Selamat Datang */}
-              <motion.div
-                className="text-center mb-6 sm:mb-8 md:mb-12"
-                variants={childVariants}
-              >
-                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold space-y-2 sm:space-y-4">
-                  <div className="mb-2 sm:mb-4">
-                    <span
-                      data-aos="fade-right"
-                      data-aos-delay="200"
-                      className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent"
-                    >
-                      Welcome
-                    </span>{" "}
-                    <span
-                      data-aos="fade-right"
-                      data-aos-delay="400"
-                      className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent"
-                    >
-                      To
-                    </span>{" "}
-                    <span
-                      data-aos="fade-right"
-                      data-aos-delay="600"
-                      className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent"
-                    >
-                      My
-                    </span>
-                  </div>
-                  <div>
-                    <span
-                      data-aos="fade-up"
-                      data-aos-delay="800"
-                      className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-                    >
-                      Portfolio
-                    </span>{" "}
-                    <span
-                      data-aos="fade-up"
-                      data-aos-delay="1000"
-                      className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-                    >
-                      Website
-                    </span>
-                  </div>
-                </h1>
-              </motion.div>
-
-              {/* Tautan Website */}
-              <motion.div
-                className="text-center"
-                variants={childVariants}
-                data-aos="fade-up"
-                data-aos-delay="1200"
-              >
-                
-              </motion.div>
-            </div>
-          </div>
+          {[Code2, User, Github].map((Icon, index) => (
+            <motion.div key={index} variants={childVariants}>
+              <IconButton Icon={Icon} />
+            </motion.div>
+          ))}
         </motion.div>
-      )}
-    </AnimatePresence>
+
+        <motion.h1
+          className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter"
+          variants={childVariants}
+        >
+          <span className="block mb-2 sm:mb-3 bg-gradient-to-r from-gray-200 via-gray-50 to-gray-300 bg-clip-text text-transparent drop-shadow-lg">
+            Welcome To My
+          </span>
+          <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-lg">
+            Portfolio Website
+          </span>
+        </motion.h1>
+      </motion.div>
+    </motion.div>
   );
 };
 
-// Validasi PropTypes untuk WelcomeScreen
-WelcomeScreen.propTypes = {
-  onLoadingComplete: PropTypes.func,
-};
+WelcomeScreen.propTypes = {};
 
 export default WelcomeScreen;

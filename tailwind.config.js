@@ -7,13 +7,29 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'navy-dark': '#0F172A',
+        'navy-light': '#1E293B',
+        'slate-text': '#94A3B8',
+        'blue-accent': '#38BDF8',
+        pastel: {
+          blue: '#A3D8F4',
+          peach: '#FF9A8B',
+          white: '#FFFFFF',
+          'blue-light': '#E8F4FD',
+          'peach-light': '#FFE5E1',
+          'blue-dark': '#7BC3E8',
+          'peach-dark': '#FF7A6B'
+        }
+      },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
         heading: ['Plus Jakarta Sans', 'sans-serif'],
         strong: ['Manrope', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(to bottom right, #4338CA, #6B21A8)'
+        'hero-gradient': 'linear-gradient(to bottom right, #A3D8F4, #FF9A8B)',
+        'pastel-gradient': 'linear-gradient(135deg, #A3D8F4 0%, #E8F4FD 50%, #FF9A8B 100%)'
       },
       animation: {
         'float': 'float 15s ease-in-out infinite',

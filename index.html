@@ -2,60 +2,95 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Photo.png" />
+    <link rel="icon" type="image/png" href="/Meta.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="google-site-verification"
-      content="ZYNfZwMUiNwSMF3EMvY85bid2BVvB12uMMRfUNWw75A"
-    />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="DRA Portfolio" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/Meta.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/Meta.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Meta.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/Meta.png" />
+    
+    <!-- SEO Meta Tags -->
     <meta
       name="keywords"
-      content="Eki, Eki Zulfar,Eki Zulfar Rachman, siapa Eki, Eki adalah , Siapa Eki Zulfar , ekizr"
+      content="Daffa Rizki Ariyanto, Full Stack Developer, React Developer, Web Developer, JavaScript, Node.js, Portfolio, Frontend, Backend"
     />
-    <meta name="mobile-web-app-capable" content="yes" />
     <meta
       name="title"
-      content="Eki Zulfar Rachman - Profil Pengembang Front-End Web"
+      content="Daffa Rizki Ariyanto - Full Stack Developer Portfolio"
     />
     <meta
       name="description"
-      content="Selamat datang di website saya! Saya adalah Eki Zulfar Rachman, atau panggil saja saya 'EKI.' Saya adalah seorang pengembang web dengan fokus pada menciptakan antarmuka pengguna yang menarik dan responsif. Temukan lebih banyak tentang karya-karya saya di sini"
+      content="Portfolio website of Daffa Rizki Ariyanto, a passionate Full Stack Developer specializing in React, Node.js, and modern web technologies. Explore my projects and get in touch!"
     />
+    <meta name="author" content="Daffa Rizki Ariyanto" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://eki.my.id/" />
+    <meta property="og:url" content="/" />
+    <meta property="og:site_name" content="Daffa Rizki Ariyanto Portfolio" />
     <meta
       property="og:title"
-      content="Eki Zulfar Rachman - Profil Pengembang Front-End Web"
+      content="Daffa Rizki Ariyanto - Full Stack Developer Portfolio"
     />
     <meta
       property="og:description"
-      content="Selamat datang di website saya! Saya adalah Eki Zulfar Rachman, atau panggil saja saya 'EKI.' Saya adalah seorang pengembang web dengan fokus pada menciptakan antarmuka pengguna yang menarik dan responsif. Temukan lebih banyak tentang karya-karya saya di sini"
+      content="Portfolio website of Daffa Rizki Ariyanto, a passionate Full Stack Developer specializing in React, Node.js, and modern web technologies. Explore my projects and get in touch!"
     />
-    <meta property="og:image" content="https://eki.my.id/Meta.png" />
+    <meta property="og:image" content="/Meta.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://eki.my.id/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@daffarizki" />
+    <meta name="twitter:creator" content="@daffarizki" />
     <meta
-      property="twitter:title"
-      content="Eki Zulfar Rachman - Profil Pengembang Front-End Web"
+      name="twitter:title"
+      content="Daffa Rizki Ariyanto - Full Stack Developer Portfolio"
     />
     <meta
-      property="twitter:description"
-      content="Selamat datang di website saya! Saya adalah Eki Zulfar Rachman, atau panggil saja saya 'EKI.' Saya adalah seorang pengembang web dengan fokus pada menciptakan antarmuka pengguna yang menarik dan responsif. Temukan lebih banyak tentang karya-karya saya di sini"
+      name="twitter:description"
+      content="Portfolio website of Daffa Rizki Ariyanto, a passionate Full Stack Developer specializing in React, Node.js, and modern web technologies."
     />
-    <meta property="twitter:image" content="https://eki.my.id/Meta.png" />
-    <meta name="theme-color" content="rgb(3,0,20)" />
-    <meta name="msapplication-navbutton-color" content="rgb(3,0,20)" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
+    <meta name="twitter:image" content="/Meta.png" />
+    
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#F4A261" />
+    <meta name="msapplication-navbutton-color" content="#F4A261" />
+    <meta name="msapplication-TileColor" content="#F4A261" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Daffa Rizki Ariyanto",
+      "jobTitle": "Full Stack Developer",
+      "description": "Passionate Full Stack Developer specializing in React, Node.js, and modern web technologies",
+      "url": "/",
+      "image": "/Meta.png",
+      "sameAs": [
+        "https://github.com/daffarizki",
+        "https://linkedin.com/in/daffarizki",
+        "https://twitter.com/daffarizki"
+      ],
+      "knowsAbout": ["JavaScript", "React", "Node.js", "Full Stack Development"]
+    }
+    </script>
 
-    <title>Front-End Web</title>
+    <title>Daffa Rizki Ariyanto - Full Stack Developer Portfolio</title>
   </head>
   <body>
     <div id="root"></div>

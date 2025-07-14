@@ -1,18 +1,13 @@
-import React, { useState, useEffect, useMemo } from "react"; // Import useMemo
+import React, { useState, useEffect, useMemo } from "react";
 import { Menu, X } from "lucide-react";
+import { APP_CONFIG, NAV_ITEMS } from '../constants';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("Home");
 
-    // Gunakan useMemo untuk memastikan navItems tidak dibuat ulang setiap render
-    const navItems = useMemo(() => [
-        { href: "#Home", label: "Home" },
-        { href: "#About", label: "About" },
-        { href: "#Portofolio", label: "Portofolio" },
-        { href: "#Contact", label: "Contact" },
-    ], []); // Array dependensi kosong, karena navItems adalah data statis
+    const navItems = useMemo(() => NAV_ITEMS, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,7 +40,7 @@ const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [navItems]); // navItems tetap di dependency array karena digunakan di dalam handleScroll
+    }, [navItems]);
 
     useEffect(() => {
         if (isOpen) {
@@ -75,9 +70,9 @@ const Navbar = () => {
         <nav
             className={`fixed w-full top-0 z-50 transition-all duration-500 ${
                 isOpen
-                    ? "bg-[#030014] opacity-100"
+                    ? "bg-slate-900/90 opacity-100"
                     : scrolled
-                    ? "bg-[#030014]/50 backdrop-blur-xl"
+                    ? "bg-slate-900/70 backdrop-blur-xl"
                     : "bg-transparent"
             }`}
         >
@@ -87,9 +82,9 @@ const Navbar = () => {
                         <a
                             href="#Home"
                             onClick={(e) => scrollToSection(e, "#Home")}
-                            className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
+                            className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent"
                         >
-                            Daffa Rizki Ariyanto
+                            {APP_CONFIG.name}
                         </a>
                     </div>
     
@@ -105,8 +100,8 @@ const Navbar = () => {
                                     <span
                                         className={`relative z-10 transition-colors duration-300 ${
                                             activeSection === item.href.substring(1)
-                                                ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                                : "text-[#e2d3fd] group-hover:text-white"
+                                                ? "bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent font-semibold"
+                                                : "text-gray-300 group-hover:text-purple-400"
                                         }`}
                                     >
                                         {item.label}
@@ -126,7 +121,7 @@ const Navbar = () => {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className={`relative p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
+                            className={`relative p-2 text-gray-300 hover:text-white transition-transform duration-300 ease-in-out transform ${
                                 isOpen ? "rotate-90 scale-125" : "rotate-0 scale-100"
                             }`}
                         >
@@ -141,7 +136,7 @@ const Navbar = () => {
             </div>
     
             <div
-                className={`md:hidden h-screen fixed inset-0 bg-[#030014] transition-all duration-300 ease-in-out ${
+                className={`md:hidden h-screen fixed inset-0 bg-slate-900 transition-all duration-300 ease-in-out ${
                     isOpen
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-[-100%] pointer-events-none"
@@ -157,8 +152,8 @@ const Navbar = () => {
                                 onClick={(e) => scrollToSection(e, item.href)}
                                 className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
                                     activeSection === item.href.substring(1)
-                                        ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                        : "text-[#e2d3fd] hover:text-white"
+                                        ? "bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent font-semibold"
+                                        : "text-gray-300 hover:text-white"
                                 }`}
                                 style={{
                                     transitionDelay: `${index * 100}ms`,
