@@ -1,81 +1,70 @@
-# Portfolio Daffa
+# 🚀 My Portofolio
+### Selamat datang di portofolio pribadiku! Proyek ini menampilkan keahlianku dalam Manajemen Operasional dan Pengembangan Web.
 
-## Deskripsi Proyek
+## 💡 Gambaran Proyek
+### Website portofolio modern dan responsif ini dibangun dengan React dan Tailwind CSS. Tujuannya adalah untuk menampilkan profil, keterampilan, dan pengalaman profesional saya melalui antarmuka yang interaktif.
 
-Portfolio website untuk menampilkan profil, keterampilan, dan pengalaman profesional. Dibangun dengan React dan Tailwind CSS untuk tampilan yang modern dan responsif.
+## ✨ Fitur Utama
+- Halaman Hero interaktif dengan animasi Lottie.
 
-## Teknologi yang Digunakan
+- Detail pengalaman kerja dan tumpukan teknologi.
 
-- **React**: Library JavaScript untuk membangun antarmuka pengguna
-- **Tailwind CSS**: Framework CSS untuk styling yang cepat dan konsisten
-- **Vite**: Build tool yang cepat untuk pengembangan modern
-- **AnimeJS**: Library animasi JavaScript
+- Halaman detail proyek dengan fitur dan teknologi spesifik.
 
-## Struktur Proyek
+- Sistem komentar frontend lokal (tidak persisten).
 
+- Navigasi responsif dan animasi UI yang halus.
+
+## 🛠️ Teknologi yang Digunakan
+- React: Untuk membangun UI.
+
+- Tailwind CSS: Untuk styling cepat dan responsif.
+
+- Vite: Build tool yang efisien.
+
+- Framer Motion & AOS: Untuk animasi dan transisi.
+
+- Lucide React: Koleksi ikon.
+
+- DotLottieReact: Integrasi animasi Lottie.
+
+- SweetAlert2: Untuk notifikasi interaktif.
+
+- Prop-Types: Validasi properti komponen.
+
+## ✅ Praktik Terbaik
+- Pemisahan komponen dan modularitas kode.
+
+- Desain responsif untuk semua perangkat.
+
+- Optimasi kinerja (memoization).
+
+## 🚀 Cara Menjalankan
+1. Clone repositori:
 ```
-├── public/              # Aset statis
-├── src/                 # Kode sumber
-│   ├── assets/          # Gambar, video, dan aset lainnya
-│   ├── components/      # Komponen React
-│   ├── data/            # Data statis (tema, pengalaman, dll)
-│   ├── hooks/           # Custom React hooks
-│   ├── App.jsx          # Komponen utama
-│   ├── main.jsx         # Entry point
-│   └── index.css        # Styling global
-├── .eslintrc.js         # Konfigurasi ESLint
-├── jsconfig.json        # Konfigurasi JavaScript
-├── tailwind.config.js   # Konfigurasi Tailwind CSS
-└── vite.config.js       # Konfigurasi Vite
+git clone https://github.com/daffarizki190/[nama-repo-kamu].git
+cd [nama-repo-kamu]
 ```
+2. Instal dependensi:
+```
+npm install
+```
+3. Jalankan aplikasi:
+```
+npm run dev
+```
+Aplikasi akan tersedia di ```http://localhost:5173.```
 
-## Custom Hooks
-
-Proyek ini menggunakan beberapa custom hooks untuk memisahkan logika dari komponen:
-
-- **useActiveSection**: Mengelola bagian aktif berdasarkan scrolling
-- **useAnimation**: Mengelola animasi dengan AnimeJS
-- **useMenu**: Mengelola state menu navigasi
-- **useTheme**: Mengelola tema aplikasi
-- **useScrollPosition**: Melacak posisi scroll
-- **useMediaQuery**: Mendeteksi ukuran layar
-- **useForm**: Mengelola state dan validasi form
-
-Lihat dokumentasi lengkap di `src/hooks/README.md`.
-
-## Praktik Terbaik yang Diterapkan
-
-1. **Pemisahan Komponen**: Memecah UI menjadi komponen yang dapat digunakan kembali
-2. **Custom Hooks**: Memisahkan logika dari komponen untuk meningkatkan keterbacaan
-3. **JSDoc**: Dokumentasi kode untuk meningkatkan pemahaman
-4. **Struktur Folder**: Organisasi file yang jelas dan terstruktur
-5. **Error Handling**: Penanganan kesalahan dengan ErrorBoundary
-6. **Responsive Design**: Tampilan yang responsif untuk berbagai ukuran layar
-7. **Aksesibilitas**: Memperhatikan aspek aksesibilitas dengan ESLint plugin jsx-a11y
-
-## Cara Menjalankan
-
-1. Clone repositori
-2. Install dependensi: `npm install`
-3. Jalankan server pengembangan: `npm run dev`
-4. Buka browser di `http://localhost:5173`
-
-## Build untuk Produksi
-
-```bash
+📦 Build & Linting
+- Build untuk Produksi:
+```
 npm run build
 ```
-
-File hasil build akan tersedia di folder `dist/`.
-
-## Linting
-
-```bash
+- Linting Kode:
+```
 npm run lint
 ```
-
-## Preview Build
-
-```bash
+- Preview Hasil Build:
+```
 npm run preview
 ```
