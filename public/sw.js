@@ -11,7 +11,7 @@ const STATIC_ASSETS = [
   '/static/css/main.css',
   '/manifest.json',
   '/Meta.png',
-  '/Photo1.png',
+  '/Photo1.jpg',
   '/Coding.gif',
   '/css.svg',
   '/html.svg',

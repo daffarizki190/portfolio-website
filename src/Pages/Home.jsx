@@ -25,7 +25,7 @@ const MainTitle = memo(function MainTitle() {
           </span>
         </span>
         <br />
-        <div className="h-8 sm:h-12 md:h-16 lg:h-20"></div>
+        <div className="h-2 sm:h-4 md:h-6 lg:h-8"></div>
         <span className="relative inline-block">
           <span className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-500 blur-2xl opacity-20"></span>
           <span className="relative bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">

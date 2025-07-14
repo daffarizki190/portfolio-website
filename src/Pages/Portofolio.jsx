@@ -79,14 +79,19 @@ const Portfolio = () => {
                 >
                   {experiencesData.map((exp, index) => (
                     <motion.div key={index} variants={itemVariants} className="bg-gray-800/50 p-6 rounded-lg shadow-lg border border-gray-700">
-                      <h3 className="text-xl font-bold text-white">{exp.role}</h3>
-                      <p className="text-sky-400 font-semibold">{exp.company}</p>
-                      <p className="text-gray-400 text-sm mb-4">{exp.period}</p>
-                      <ul className="list-disc list-inside space-y-2 text-gray-300">
-                        {exp.tasks.map((task, i) => (
-                          <li key={i}>{task}</li>
-                        ))}
-                      </ul>
+                      <div className="mb-4">
+                        <h3 className="text-xl font-bold text-white mb-2">{exp.role}</h3>
+                        <p className="text-sky-400 font-semibold text-lg">{exp.company}</p>
+                        <p className="text-gray-400 text-sm mt-1">{exp.period}</p>
+                      </div>
+                      <ul className="space-y-3 text-gray-300 leading-relaxed">
+                         {exp.tasks.map((task, i) => (
+                           <li key={i} className="text-sm md:text-base flex items-start">
+                             <span className="text-sky-400 mr-3 mt-1 flex-shrink-0">•</span>
+                             <span className="text-justify">{task}</span>
+                           </li>
+                         ))}
+                       </ul>
                     </motion.div>
                   ))}
                 </motion.div>

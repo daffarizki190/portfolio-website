@@ -39,7 +39,7 @@ const About = () => {
           <div className="flex justify-center" data-aos="fade-left" data-aos-delay="400">
             {/* Menggunakan foto dari folder public dengan animasi AOS dan efek hover */}
             <img
-              src="/Photo1.png"
+              src="/Photo1.jpg"
               alt="Foto Profil Daffa Rizki Ariyanto"
               className="rounded-full object-cover w-64 h-64 md:w-80 md:h-80 border-4 border-slate-500 shadow-lg
                          transform transition-transform duration-300 hover:scale-105" /* Efek hover */

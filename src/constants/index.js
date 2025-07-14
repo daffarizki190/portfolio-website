@@ -2,7 +2,7 @@ export const APP_CONFIG = {
   name: 'Daffa Rizki Ariyanto',
   brand: 'DRA™',
   title: 'Manajemen Operasional',
-  subtitle: 'Operasional Parking & Computer Science Student',
+  subtitle: 'Parking Operations Manager & Computer Science Student',
   description: 'Tech Enthusiast',
   year: '2025'
 };
@@ -28,7 +28,8 @@ export const TECH_STACK = [
 
 export const TYPING_CONFIG = {
   words: [
-    'Operasional Parking & Computer Science Student',
+    'Operasional Parking',
+    'Computer Science Student',
     'Tech Enthusiast'
   ],
   typingSpeed: 100,

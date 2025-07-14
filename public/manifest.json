@@ -20,9 +20,9 @@
       "label": "Portfolio Homepage"
     },
     {
-      "src": "/Photo1.png",
+      "src": "/Photo1.jpg",
       "sizes": "750x1334",
-      "type": "image/png",
+      "type": "image/jpeg",
       "platform": "narrow",
       "label": "Mobile Portfolio View"
     }
