@@ -1,45 +1,67 @@
 export const techStacks = [
-  { icon: "html.svg", language: "HTML" },
-  { icon: "css.svg", language: "CSS" },
   { icon: "javascript.svg", language: "JavaScript" },
-  { icon: "tailwind.svg", language: "Tailwind CSS" },
+  { icon: "python.svg", language: "Python" }, // Needs a python.svg icon in public
+  { icon: "cpp.svg", language: "C++" },       // Needs a cpp.svg icon in public
+  { icon: "iot.svg", language: "IoT / Arduino" }, // Needs an iot.svg icon in public
   { icon: "reactjs.svg", language: "ReactJS" },
   { icon: "nodejs.svg", language: "Node JS" },
 ];
 
 export const experiencesData = [
   {
-    role: "Leader Operasional Parking (Gandaria City)",
-    company: "PT. CENTREPARK CITRA CORPORA",
-    period: "September 2024 - Sekarang",
+    role: "Cashier Parking, Pegawai Kontrak",
+    company: "PT. ISS",
+    period: "November 2019 - Maret 2020",
     tasks: [
-      "Memimpin tim 25+ staff dalam operasional parkir di Gandaria City dengan kapasitas 2000+ kendaraan per hari.",
-      "Mengoptimalkan sistem parkir yang menghasilkan peningkatan efisiensi waktu pelayanan sebesar 25%.",
-      "Mengembangkan dan menerapkan SOP baru yang meningkatkan kepuasan pelanggan hingga 90%.",
-      "Mengelola dan menyelesaikan keluhan pelanggan dengan tingkat resolusi 95% dalam 24 jam.",
-      "Melakukan pelatihan rutin tim untuk meningkatkan standar pelayanan dan keselamatan."
+      "Mengelola transaksi pembayaran (tunai & non-tunai) menggunakan sistem POS secara akurat.",
+      "Melayani kebutuhan pelanggan dan menyusun laporan setoran harian."
     ]
   },
   {
-    role: "Leader Operasional Parking (Distrik 8 SCBD)",
-    company: "PT. CENTREPARK CITRA CORPORA",
-    period: "Juli 2024 - September 2024",
-    tasks: [
-      "Mengelola operasional parkir premium di area SCBD dengan standar pelayanan tinggi.",
-      "Mengimplementasikan sistem rotasi shift yang meningkatkan produktivitas tim sebesar 20%.",
-      "Berkoordinasi dengan manajemen gedung untuk optimalisasi layanan valet dan parkir VIP.",
-      "Mengurangi waktu tunggu pelanggan hingga 40% melalui perbaikan sistem antrian."
-    ]
-  },
-  {
-    role: "Kasir Parking (RS Medistra)",
+    role: "Cashier Parking, Pegawai Kontrak",
     company: "PT. IPM",
-    period: "Februari 2020 - Juli 2024",
+    period: "Maret 2020 - Juni 2024",
     tasks: [
-      "Mengelola transaksi pembayaran parkir dengan rata-rata 500+ kendaraan per hari.",
-      "Memastikan akurasi 100% dalam pencatatan keuangan dan rekonsiliasi harian.",
-      "Memberikan pelayanan prima kepada pengunjung rumah sakit dengan empati dan profesionalisme.",
-      "Mengoptimalkan proses pembayaran untuk mengurangi waktu antrian di loket."
+      "Mengelola transaksi pembayaran (tunai & non-tunai) menggunakan sistem POS secara akurat.",
+      "Melayani kebutuhan pelanggan dan menyusun laporan setoran harian."
     ]
+  },
+  {
+    role: "Supervisor, Pegawai Kontrak",
+    company: "PT. Centrepark Citra Corpora",
+    period: "Juni 2024 - September 2024",
+    tasks: [
+      "Memimpin dan mengoordinasikan tim operasional untuk memastikan kelancaran layanan parkir di lokasi penempatan.",
+      "Mengawasi sistem manajemen parkir secara harian dan melakukan troubleshooting dasar pada perangkat keras maupun lunak jika terjadi kendala pada gate.",
+      "Bertanggung jawab atas pelaporan data transaksi dan administrasi operasional kepada manajemen pusat."
+    ]
+  },
+  {
+    role: "Attendent, Pegawai Kontrak",
+    company: "PT. Centrepark Citra Corpora",
+    period: "Agustus 2024 - Sekarang",
+    tasks: [
+      "Memberikan pelayanan pelanggan sesuai standar operasional perusahaan.",
+      "Memastikan keamanan dan ketertiban area parkir selama jam operasional."
+    ]
+  }
+];
+
+export const projectsData = [
+  {
+    "name": "Sistem Resi Parkir (Gandaria City)",
+    "description": "Aplikasi web responsif untuk sistem manajemen resi parkir harian di Gandaria City. Dibangun menggunakan React dan Tailwind CSS dengan antarmuka yang bersih.",
+    "url": "https://github.com/daffarizki190/parking-receipt-gandaria-city",
+    "live_demo": "https://parking-gandaria-city.vercel.app",
+    "image": "https://api.microlink.io/?url=https://parking-gandaria-city.vercel.app&screenshot=true&meta=false&embed=screenshot.url",
+    "language": "JavaScript"
+  },
+  {
+    "name": "Project WarungKu",
+    "description": "Aplikasi kasir dan manajemen warung digital modern (Point of Sales). Dibangun menggunakan ekosistem React dengan state management yang efisien.",
+    "url": "https://github.com/daffarizki190/Project_WarungKu",
+    "live_demo": "",
+    "image": "/project_warungku_preview.png",
+    "language": "JavaScript"
   }
 ];
