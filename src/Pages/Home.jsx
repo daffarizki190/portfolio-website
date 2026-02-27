@@ -7,7 +7,7 @@ import {
   ExternalLink,
   Instagram,
 } from "lucide-react";
- 
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { SOCIAL_LINKS, TECH_STACK, TYPING_CONFIG } from '../constants';
@@ -21,7 +21,7 @@ const MainTitle = memo(function MainTitle() {
         <span className="relative inline-block">
           <span className="absolute -inset-2 bg-gradient-to-r from-blue-500 to-purple-600 blur-2xl opacity-20"></span>
           <span className="relative bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-            Manajemen
+            Operasional
           </span>
         </span>
         <br />
@@ -29,7 +29,7 @@ const MainTitle = memo(function MainTitle() {
         <span className="relative inline-block">
           <span className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-500 blur-2xl opacity-20"></span>
           <span className="relative bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-            Operasional
+            Parking
           </span>
         </span>
       </h1>
@@ -63,11 +63,10 @@ function CTAButton({ href, text, icon: Icon }) {
               {text}
             </span>
             <Icon
-              className={`w-4 h-4 text-gray-700 ${
-                text === "Contact"
+              className={`w-4 h-4 text-gray-700 ${text === "Contact"
                   ? "group-hover:translate-x-1"
                   : "group-hover:rotate-45"
-              } transform transition-all duration-300 z-10`}
+                } transform transition-all duration-300 z-10`}
             />
           </span>
         </div>
@@ -157,9 +156,8 @@ const Home = () => {
   return (
     <section id="Home" role="region" aria-labelledby="home-heading">
       <div
-        className={`relative z-10 transition-all duration-1000 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
+        className={`relative z-10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"
+          }`}
       >
         <div className="container mx-auto px-[5%] sm:px-6 lg:px-[0%] pt-20 pb-8">
           <div className="flex flex-col lg:flex-row items-center justify-center md:justify-between gap-0 sm:gap-12 lg:gap-20">
@@ -235,15 +233,13 @@ const Home = () => {
               <div className="relative w-full h-full max-w-md mx-auto">
                 {/* Mengubah gradien blur di sekitar GIF untuk lebih menyatu */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-r from-blue-500/40 to-purple-600/40 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${
-                    isHovering ? "opacity-90 scale-105" : "opacity-50 scale-100"
-                  }`}
+                  className={`absolute inset-0 bg-gradient-to-r from-blue-500/40 to-purple-600/40 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${isHovering ? "opacity-90 scale-105" : "opacity-50 scale-100"
+                    }`}
                 ></div>
 
                 <div
-                  className={`relative z-10 w-full h-full opacity-90 transform transition-transform duration-500 flex items-center justify-center ${
-                    isHovering ? "scale-105" : "scale-100"
-                  }`}
+                  className={`relative z-10 w-full h-full opacity-90 transform transition-transform duration-500 flex items-center justify-center ${isHovering ? "scale-105" : "scale-100"
+                    }`}
                 >
                   {/* Mengganti DotLottieReact dengan tag img untuk GIF lokal */}
                   <img
@@ -254,15 +250,13 @@ const Home = () => {
                 </div>
 
                 <div
-                  className={`absolute inset-0 pointer-events-none transition-all duration-700 ${
-                    isHovering ? "opacity-50" : "opacity-20"
-                  }`}
+                  className={`absolute inset-0 pointer-events-none transition-all duration-700 ${isHovering ? "opacity-50" : "opacity-20"
+                    }`}
                 >
                   {/* Mengubah gradien blur yang berdenyut */}
                   <div
-                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-blue-500/40 to-purple-600/40 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] transition-all duration-700 ${
-                      isHovering ? "scale-110 opacity-70" : "scale-100 opacity-40"
-                    }`}
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-blue-500/40 to-purple-600/40 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] transition-all duration-700 ${isHovering ? "scale-110 opacity-70" : "scale-100 opacity-40"
+                      }`}
                   ></div>
                 </div>
               </div>

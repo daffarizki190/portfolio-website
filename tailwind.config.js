@@ -23,9 +23,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        heading: ['Plus Jakarta Sans', 'sans-serif'],
-        strong: ['Manrope', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Outfit', 'sans-serif'],
+        strong: ['Outfit', 'sans-serif'],
       },
       backgroundImage: {
         'hero-gradient': 'linear-gradient(to bottom right, #A3D8F4, #FF9A8B)',
