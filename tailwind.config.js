@@ -8,28 +8,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        'navy-dark': '#0F172A',
-        'navy-light': '#1E293B',
-        'slate-text': '#94A3B8',
-        'blue-accent': '#38BDF8',
-        pastel: {
-          blue: '#A3D8F4',
-          peach: '#FF9A8B',
-          white: '#FFFFFF',
-          'blue-light': '#E8F4FD',
-          'peach-light': '#FFE5E1',
-          'blue-dark': '#7BC3E8',
-          'peach-dark': '#FF7A6B'
-        }
+        'lime-accent': '#DFFF00',
+        'off-white': '#F5F5F5',
+        'deep-black': '#0A0A0A',
+        'soft-gray': '#A1A1AA',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        heading: ['Outfit', 'sans-serif'],
-        strong: ['Outfit', 'sans-serif'],
+        display: ['Outfit', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(to bottom right, #A3D8F4, #FF9A8B)',
-        'pastel-gradient': 'linear-gradient(135deg, #A3D8F4 0%, #E8F4FD 50%, #FF9A8B 100%)'
+        'minimal-gradient': 'linear-gradient(to bottom right, #F5F5F5, #E5E5E5)',
+        'dark-gradient': 'linear-gradient(to bottom right, #0A0A0A, #171717)',
       },
       animation: {
         'float': 'float 15s ease-in-out infinite',

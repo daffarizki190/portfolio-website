@@ -1,100 +1,101 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, GraduationCap, Languages, Sparkles } from 'lucide-react';
 
 const About = () => {
-  useEffect(() => {
-    AOS.init({
-      once: true,
-      duration: 1000,
-    });
-  }, []);
-
   return (
-    <section id="About" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12" data-aos="fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-200">
-            Tentang Saya
-          </h2>
-          <p className="mt-4 text-lg md:text-xl text-slate-300">
-            Mengenal lebih jauh tentang perjalanan, pendidikan, dan keahlian saya.
-          </p>
-        </div>
+    <section id="About" className="py-24 bg-deep-black text-off-white overflow-hidden border-t border-off-white/5">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div className="space-y-6" data-aos="fade-right" data-aos-delay="200">
-            <h3 className="text-2xl font-semibold text-slate-200">
-              Latar Belakang Profesional
-            </h3>
-            <div className="text-slate-300 leading-relaxed text-justify space-y-4">
-              <p>
-                Saya adalah mahasiswa Ilmu Komputer di Universitas Bumigora yang memiliki minat besar pada integrasi teknologi informasi dan efisiensi operasional.
-              </p>
-              <p>
-                Berbekal pengalaman profesional di bidang manajemen operasional parkir, saya kini fokus mengembangkan keahlian dalam pembangunan aplikasi web menggunakan React & Node.js serta sistem IoT. Saya percaya bahwa inovasi terbaik lahir dari pemahaman mendalam terhadap kendala nyata di lapangan.
-              </p>
-            </div>
-
-            <div className="pt-6 space-y-6 border-t border-slate-700/50">
-              <div>
-                <h4 className="text-xl font-semibold text-slate-200 mb-3">Pendidikan</h4>
-                <div className="flex items-center space-x-3 bg-slate-800/40 p-3 rounded-lg border border-slate-700">
-                  <div className="bg-sky-500/20 p-2 rounded-lg">🎓</div>
-                  <div>
-                    <p className="font-medium text-slate-200">Universitas Bumigora</p>
-                    <p className="text-sm text-slate-400">S1, Ilmu Komputer (Sekarang)</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <h4 className="text-lg font-semibold text-slate-200 mb-3">Bahasa</h4>
-                  <div className="flex flex-col gap-2">
-                    <span className="px-3 py-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-sm font-medium w-fit">🇮🇩 Indonesia - Proficient</span>
-                    <span className="px-3 py-1.5 bg-slate-700/50 text-slate-300 border border-slate-600 rounded-full text-sm font-medium w-fit">🇬🇧 English - Intermediate</span>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-semibold text-slate-200 mb-3">Hobi</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {['Photography', 'Swimming', 'Open Source'].map((hobby) => (
-                      <span key={hobby} className="px-3 py-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-sm font-medium">
-                        {hobby}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center justify-center space-y-12" data-aos="fade-left" data-aos-delay="400">
-            {/* Menggunakan foto dari folder public dengan animasi AOS dan efek hover */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-sky-500/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300 opacity-50"></div>
+          {/* Photo */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="relative z-10 aspect-[3/4] overflow-hidden rounded-3xl bg-off-white/5">
               <img
                 src="/Photo1.jpg"
-                alt="Foto Profil Daffa Rizki Ariyanto"
-                className="relative rounded-full object-cover w-64 h-64 md:w-80 md:h-80 border-4 border-slate-700 shadow-2xl
-                           transform transition-transform duration-500 group-hover:scale-[1.02]"
-                data-aos="zoom-in"
-                data-aos-delay="600"
+                alt="Daffa Rizki Ariyanto"
+                className="w-full h-full object-cover object-center group-hover:scale-105 hover:scale-105 transition-all duration-700"
               />
             </div>
+            {/* Decorative */}
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full -z-0"
+              style={{
+                background: "linear-gradient(135deg, #a855f7, #3b82f6)",
+                opacity: 0.5, filter: "blur(40px)"
+              }}
+            />
+            <div className="absolute -top-6 -right-6 w-12 h-12 border-2 border-lime-accent rounded-full -z-0 opacity-50" />
+          </motion.div>
 
-            <div className="w-full max-w-sm">
-              <h3 className="text-xl font-semibold text-slate-100 text-center mb-6">Soft Skills</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {['Leadership', 'Communication', 'Problem Solving', 'Team Collaboration'].map((skill, index) => (
-                  <div key={index} className="px-4 py-3 bg-slate-800/40 backdrop-blur-sm rounded-lg border border-slate-700/50 text-center hover:border-sky-500/50 hover:bg-slate-800/60 transition-all shadow-sm">
-                    <h4 className="text-sm font-medium text-slate-300">{skill}</h4>
+          {/* Text Content */}
+          <div className="space-y-10 relative">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h2 className="text-6xl md:text-7xl font-display font-black tracking-tighter uppercase leading-none">
+                ABOUT{" "}
+                <span className="text-lime-accent">ME</span>
+              </h2>
+              <p className="text-xl text-off-white/60 font-medium leading-relaxed">
+                Computer Science student at Universitas Cakrawala, passionate about
+                bridging operational efficiency with innovative technology.
+              </p>
+              <p className="text-lg text-off-white/30 font-medium">
+                With a background in parking operations management, I build web apps
+                and IoT systems that solve real-world problems.
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="space-y-3 relative z-10"
+              >
+                <div className="flex items-center gap-3">
+                  <Languages className="w-4 h-4 text-lime-accent" />
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-off-white/30">Languages</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {['Indonesian (Native)', 'English (Intermediate)'].map((lang, i) => (
+                    <span key={i} className="px-4 py-2 border border-off-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-off-white/50">
+                      {lang}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-3"
+            >
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-4 h-4 text-lime-accent" />
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-off-white/30">Soft Skills</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {['Leadership', 'Communication', 'Problem Solving', 'Teamwork'].map((skill, i) => (
+                  <div key={i} className="flex items-center gap-2 px-5 py-2.5 border border-off-white/10 rounded-full group hover:border-lime-accent/50 hover:bg-lime-accent/5 transition-all">
+                    <ArrowRight className="w-3 h-3 text-lime-accent" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-off-white/60">{skill}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

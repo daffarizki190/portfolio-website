@@ -1,226 +1,229 @@
 import React from "react";
 import { Tab } from "@headlessui/react";
-import { Code, Boxes, FolderGit2, Github, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
-import { techStacks, experiencesData, projectsData } from "../constants/portofolio"; // Import data from constants/portofolio.js
-import { useAnimation } from "../hooks/useAnimation";
+import { Code, Boxes, FolderGit2, Github, ExternalLink, ArrowRight } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { techStacks, experiencesData, projectsData } from "../constants/portofolio";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Portfolio = () => {
-  const { containerVariants, itemVariants } = useAnimation();
+// Interactive 3D Card for Projects
+const Project3DCard = ({ project, index }) => {
+  const ref = React.useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  // Glare effect
+  const glareX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]);
+  const glareY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    x.set(mouseX / width - 0.5);
+    y.set(mouseY / height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
 
   return (
-    <section id="Portofolio" className="py-20 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Portfolio</h2>
-          <p className="mt-4 text-lg md:text-xl text-gray-300">My Work Experience, Tech Skills & Projects</p>
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className="group cursor-pointer perspective-[1000px] relative z-10"
+    >
+      <div
+        className="relative aspect-video rounded-3xl overflow-hidden bg-white/5 mb-6 border border-white/5 group-hover:border-lime-accent/30 transition-colors duration-500"
+        style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}
+      >
+        <img
+          src={project.image}
+          alt={project.name}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+        />
+
+        {/* Dynamic Glare Overlay */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none rounded-3xl mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(circle at ${glareX.get()} ${glareY.get()}, rgba(255,255,255,0.4) 0%, transparent 60%)`,
+            left: "-50%", right: "-50%", top: "-50%", bottom: "-50%",
+            x: glareX, y: glareY
+          }}
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-deep-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        <div
+          className="absolute top-6 right-6 flex gap-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
+          style={{ transform: "translateZ(50px)" }}
+        >
+          {project.live_demo && (
+            <a href={project.live_demo} target="_blank" rel="noopener noreferrer" className="p-3 bg-lime-accent text-deep-black rounded-full hover:scale-110 transition-transform">
+              <ExternalLink size={18} />
+            </a>
+          )}
+          <a href={project.url} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/20 backdrop-blur-md text-off-white rounded-full hover:bg-white/30 transition-all">
+            <Github size={18} />
+          </a>
+        </div>
+      </div>
+
+      <div className="space-y-3" style={{ transform: "translateZ(20px)" }}>
+        <h3 className="text-3xl font-display font-black tracking-tight uppercase group-hover:text-lime-accent transition-colors">
+          {project.name}
+        </h3>
+        <p className="text-off-white/40 font-medium line-clamp-2">
+          {project.description}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
+
+const Portfolio = () => {
+  return (
+    <section id="Portofolio" className="py-24 bg-deep-black text-off-white">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="max-w-2xl">
+            <motion.h2
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-5xl md:text-7xl font-display font-black tracking-tighter uppercase mb-4"
+            >
+              SELECTED <span className="text-lime-accent">WORKS</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-lg text-off-white/60 font-medium"
+            >
+              A collection of my professional journey, technical projects, and the tools I use to build digital experiences.
+            </motion.p>
+          </div>
         </div>
 
-        <div className="w-full max-w-5xl mx-auto">
+        <div className="w-full">
           <Tab.Group>
-            <Tab.List className="grid grid-cols-1 md:grid-cols-3 gap-2 rounded-xl bg-gray-700/50 p-2">
-              <Tab
-                className={({ selected }) =>
-                  classNames(
-                    'w-full rounded-lg py-3 text-sm font-medium leading-5 transition-all duration-300',
-                    'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-sky-500 ring-white ring-opacity-60',
-                    selected
-                      ? 'bg-sky-600 text-white shadow-lg scale-[1.02]'
-                      : 'text-gray-300 hover:bg-white/[0.12] hover:text-white'
-                  )
-                }
-              >
-                <div className="flex flex-col items-center justify-center">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Code size={18} />
-                    <span className="font-semibold text-base">Work Experience</span>
-                  </div>
-                  <p className="text-xs opacity-80">My Professional Journey</p>
-                </div>
-              </Tab>
-
-              <Tab
-                className={({ selected }) =>
-                  classNames(
-                    'w-full rounded-lg py-3 text-sm font-medium leading-5 transition-all duration-300',
-                    'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-sky-500 ring-white ring-opacity-60',
-                    selected
-                      ? 'bg-sky-600 text-white shadow-lg scale-[1.02]'
-                      : 'text-gray-300 hover:bg-white/[0.12] hover:text-white'
-                  )
-                }
-              >
-                <div className="flex flex-col items-center justify-center">
-                  <div className="flex items-center gap-2 mb-1">
-                    <FolderGit2 size={18} />
-                    <span className="font-semibold text-base">My Projects</span>
-                  </div>
-                  <p className="text-xs opacity-80">Selected Web Projects</p>
-                </div>
-              </Tab>
-
-              <Tab
-                className={({ selected }) =>
-                  classNames(
-                    'w-full rounded-lg py-3 text-sm font-medium leading-5 transition-all duration-300',
-                    'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-sky-500 ring-white ring-opacity-60',
-                    selected
-                      ? 'bg-sky-600 text-white shadow-lg scale-[1.02]'
-                      : 'text-gray-300 hover:bg-white/[0.12] hover:text-white'
-                  )
-                }
-              >
-                <div className="flex flex-col items-center justify-center">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Boxes size={18} />
-                    <span className="font-semibold text-base">Tech Stack</span>
-                  </div>
-                  <p className="text-xs opacity-80">Technologies I Work With</p>
-                </div>
-              </Tab>
-            </Tab.List>
-            <Tab.Panels className="mt-8">
-              {/* Work Experience Panel */}
-              <Tab.Panel
-                className={classNames(
-                  'rounded-xl bg-gray-800/30 p-6 shadow-xl',
-                  'focus:outline-none border border-slate-700/50'
-                )}
-              >
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  className="space-y-0 relative border-l border-gray-600 ml-4 lg:ml-8"
+            <Tab.List className="flex flex-wrap gap-4 mb-12">
+              {[
+                { label: "Experience", icon: Code },
+                { label: "Projects", icon: FolderGit2 },
+                { label: "Tech Stack", icon: Boxes }
+              ].map((tab, idx) => (
+                <Tab
+                  key={idx}
+                  className={({ selected }) =>
+                    classNames(
+                      'px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 outline-none',
+                      selected
+                        ? 'bg-lime-accent text-deep-black'
+                        : 'bg-white/5 text-off-white/40 hover:bg-white/10 hover:text-off-white'
+                    )
+                  }
                 >
-                  {experiencesData.map((exp, index) => (
-                    <motion.div key={index} variants={itemVariants} className="relative pl-8 py-6 group">
-                      {/* Timeline Dot */}
-                      <div className="absolute w-4 h-4 bg-gray-700 rounded-full -left-[8.5px] top-8 border-2 border-gray-900 group-hover:bg-sky-400 group-hover:scale-125 transition-all duration-300 shadow-[0_0_10px_rgba(56,189,248,0)] group-hover:shadow-[0_0_15px_rgba(56,189,248,0.6)]"></div>
+                  <div className="flex items-center gap-2">
+                    <tab.icon size={14} />
+                    {tab.label}
+                  </div>
+                </Tab>
+              ))}
+            </Tab.List>
 
-                      {/* Card Content */}
-                      <div className="bg-gray-800/60 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-sky-500/50 hover:bg-gray-800 transition-all duration-300">
-                        <div className="mb-4">
-                          <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
-                          <p className="text-sky-400 font-semibold text-lg">{exp.company}</p>
-                          <p className="text-gray-400 text-sm mt-1">{exp.period}</p>
+            <Tab.Panels>
+              <Tab.Panel className="outline-none">
+                <div className="space-y-12">
+                  {experiencesData.map((exp, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-12"
+                    >
+                      <div className="text-off-white/40 text-sm font-bold uppercase tracking-widest pt-1">
+                        {exp.period}
+                      </div>
+                      <div className="space-y-4">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                          <h3 className="text-3xl font-display font-black tracking-tight uppercase group-hover:text-lime-accent transition-colors">
+                            {exp.role}
+                          </h3>
+                          <span className="text-lime-accent font-bold uppercase tracking-widest text-xs px-3 py-1 bg-lime-accent/10 rounded-full">
+                            {exp.company}
+                          </span>
                         </div>
-                        <ul className="space-y-3 text-gray-300 leading-relaxed">
+                        <ul className="space-y-4 text-off-white/60 font-medium">
                           {exp.tasks.map((task, i) => (
-                            <li key={i} className="text-sm md:text-base flex items-start">
-                              <span className="text-sky-400 mr-3 mt-1 flex-shrink-0">•</span>
-                              <span className="text-justify">{task}</span>
+                            <li key={i} className="flex items-start gap-4">
+                              <ArrowRight size={16} className="mt-1 flex-shrink-0 text-lime-accent" />
+                              <span className="leading-relaxed">{task}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                     </motion.div>
                   ))}
-                </motion.div>
+                </div>
               </Tab.Panel>
 
-              {/* GitHub Projects Panel */}
-              <Tab.Panel
-                className={classNames(
-                  'rounded-xl bg-gray-800/30 p-6 shadow-xl',
-                  'focus:outline-none border border-slate-700/50'
-                )}
-              >
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6"
-                >
+              <Tab.Panel className="outline-none">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   {projectsData.map((project, index) => (
-                    <motion.div key={index} variants={itemVariants} className="h-full">
-                      <div className="bg-gray-800/80 rounded-xl border border-gray-700 hover:border-sky-500/50 transition-all duration-300 h-full flex flex-col group relative overflow-hidden shadow-lg">
-                        {/* Soft glow effect on hover */}
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
-
-                        <div className="relative z-10 flex flex-col h-full bg-gray-800/90 rounded-xl overflow-hidden">
-                          {/* Image Thumbnail Section */}
-                          <div className="w-full h-48 sm:h-56 relative border-b border-gray-700 bg-gray-900 overflow-hidden group-hover:bg-gray-800 transition-colors">
-                            <img
-                              src={project.image}
-                              alt={project.name}
-                              className="w-full h-full object-contain p-2 transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-90 pointer-events-none"></div>
-
-                            {/* Live Demo Link on Top Right (Conditional) */}
-                            {project.live_demo && (
-                              <div className="absolute top-4 right-4">
-                                <a href={project.live_demo} target="_blank" rel="noopener noreferrer"
-                                  className="bg-sky-500/20 text-sky-300 hover:bg-sky-500 hover:text-white backdrop-blur-md p-2 rounded-full transition-all duration-300 flex items-center shadow-lg border border-sky-500/30"
-                                  title="View Live Demo">
-                                  <ExternalLink size={16} />
-                                </a>
-                              </div>
-                            )}
-
-                          </div>
-
-                          <div className="p-6 flex flex-col flex-grow">
-                            <h3 className="text-xl font-bold text-white group-hover:text-sky-400 transition-colors mb-3 line-clamp-2">
-                              {project.name}
-                            </h3>
-
-                            <p className="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
-                              {project.description}
-                            </p>
-
-                            <div className="mt-auto pt-5 border-t border-gray-700/60">
-                              <a
-                                href={project.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2 w-full text-sm font-semibold text-white bg-slate-700 hover:bg-sky-600/90 py-2.5 rounded-lg transition-all duration-300 shadow hover:shadow-sky-500/20"
-                              >
-                                <Github size={18} />
-                                View Source Code
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
+                    <Project3DCard key={index} project={project} index={index} />
                   ))}
-                </motion.div>
+                </div>
               </Tab.Panel>
 
-              {/* Tech Stack Panel */}
-              <Tab.Panel
-                className={classNames(
-                  'rounded-xl bg-gray-800/30 p-8 shadow-xl',
-                  'focus:outline-none border border-slate-700/50'
-                )}
-              >
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+              <Tab.Panel className="outline-none">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                   {techStacks.map((tech, index) => (
                     <motion.div
                       key={index}
-                      className="flex flex-col items-center justify-center p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-sky-500 hover:bg-gray-800 transition-all duration-300 cursor-pointer group hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      whileHover={{ scale: 1.05 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ y: -5 }}
+                      className="flex flex-col items-center justify-center p-8 bg-white/5 rounded-3xl border border-white/5 hover:border-lime-accent/50 transition-all group"
                     >
-                      <div className="h-16 w-16 mb-4 flex items-center justify-center">
-                        <img
-                          src={`/${tech.icon}`}
-                          alt={tech.language}
-                          className="max-h-full max-w-full drop-shadow-md group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-all"
-                        />
-                      </div>
-                      <p className="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors text-center">{tech.language}</p>
+                      <img
+                        src={`/${tech.icon}`}
+                        alt={tech.language}
+                        className="w-12 h-12 object-contain mb-4 grayscale group-hover:grayscale-0 transition-all"
+                      />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-off-white/40 group-hover:text-lime-accent">
+                        {tech.language}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
